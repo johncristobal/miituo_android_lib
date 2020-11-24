@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/textfecha"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:padding="16dp"
+tools:context=".activities.adapters.TabFragment2"
+android:background="@android:color/white">
+
+<TextView
+    android:id="@+id/textView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentStart="true"
+    android:layout_centerVertical="false"
+    android:layout_marginTop="10dp"
+    android:gravity="center"
+    android:paddingEnd="10dp"
+    android:paddingStart="10dp"
+    android:text="Aún no es tiempo de registrar tu odómetro."
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:textSize="22sp" />
+
+<TextView
+    android:id="@+id/texdate"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/textView78"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="30dp"
+    android:text="TextView"
+    android:textAlignment="center"
+    android:textColor="@android:color/black"
+    android:textSize="20sp"
+    android:textStyle="bold"
+    android:gravity="center_horizontal" />
+
+<TextView
+    android:id="@+id/textView80"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/texdate"
+    android:layout_marginTop="5dp"
+    android:layout_centerHorizontal="true"
+    android:text="TextView"
+    android:textColor="@android:color/black"
+    android:textSize="20sp"
+    android:textStyle="bold" />
+
+<TextView
+    android:id="@+id/textView78"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentStart="true"
+    android:layout_below="@+id/textView"
+    android:layout_marginTop="50dp"
+    android:textSize="15sp"
+    android:text="Lo podrás hacer en cualquier momento dentro de las siguientes fechas:"
+    android:textAlignment="center" />
+
+<Button
+    android:id="@+id/button13"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/textView80"
+    android:layout_alignStart="@+id/textView80"
+    android:layout_marginTop="50dp"
+    android:text="Button"
+    android:visibility="invisible" />
+
+</RelativeLayout>

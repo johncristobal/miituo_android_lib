@@ -1,0 +1,3 @@
+include ':miituolibrary'
+include ':app'
+rootProject.name = "MiituoLib"

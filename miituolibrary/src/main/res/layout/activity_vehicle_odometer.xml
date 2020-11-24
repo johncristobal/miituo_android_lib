@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="15dp"
+    tools:context=".activities.VehicleOdometer">
+
+    <ImageView
+        android:id="@+id/img5"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_menu_camera" />
+
+    <TextView
+        android:id="@+id/btnSinAuto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="11dp"
+        android:onClick="sinAuto"
+        android:text="Ya no tengo mi auto"
+        android:textSize="17sp"
+        android:textColor="@color/colorPrimaryDark"
+        tools:ignore="OnClick" />
+
+    <Button
+        android:id="@+id/btn6"
+        android:layout_width="165dp"
+        android:layout_height="30dp"
+        android:layout_above="@+id/btnSinAuto"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="11dp"
+        android:background="@drawable/button"
+        android:onClick="subirFoto"
+        android:text="Tomar fotografía"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/textView38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img5"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:text="Fotografía del odómetro"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView38"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="18dp"
+        android:gravity="center"
+        android:text="Toma la fotografía de tu odómetro, asegurate de que la iluminación sea la adecuada para que la foto sea clara y los números visibles."
+        android:textSize="16sp" />
+
+</RelativeLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.miituo.miituolibrary">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <application>
+        <activity android:name=".activities.WebActivity"></activity>
+        <activity android:name=".activities.PDFViewer" />
+        <activity android:name=".activities.InfoCancelActivity" />
+        <activity android:name=".activities.DetallesActivity" />
+        <activity android:name=".activities.LastOdometerActivity" />
+        <activity android:name=".activities.ConfirmActivity" />
+        <activity android:name=".activities.VehicleOdometer" />
+        <activity android:name=".activities.PrincipalActivity" />
+        <activity android:name=".activities.VehiclePictures" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.miituo.miituolibrary.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+    </application>
+
+</manifest>
