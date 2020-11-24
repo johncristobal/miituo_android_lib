@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.PrincipalActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:scaleType="fitEnd"
+        app:srcCompat="@drawable/ciudad" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="160dp" />
+    <TextView
+        android:id="@+id/terms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:textSize="8dp"
+        android:layout_alignBottom="@+id/view_pager"
+        android:layout_marginBottom="3dp"
+        android:text="*Aplican términos y condiciones"/>
+    <LinearLayout
+        android:id="@+id/layoutDots"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:gravity="bottom|center_horizontal"
+        android:layout_marginBottom="-2dp"
+        android:layout_above="@+id/terms"
+        android:orientation="horizontal"/>
+
+        <ListView
+            android:id="@+id/listviewinfoclient"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/divider"
+            android:alpha="0.8" />
+
+    <TextView
+        android:id="@+id/lbSinPolizas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="COTIZAR"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:paddingRight="35dp"
+        android:paddingLeft="35dp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/button"
+        android:layout_below="@id/divider"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        />
+    <ImageView
+        android:id="@+id/imgSinPolizas"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/back_sin_polizas"/>
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hola,"
+        android:textColor="#7D7D7D"
+        android:textSize="16sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/imageView2"/>
+
+    <TextView
+        android:id="@+id/textViewNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView4"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/textView4"
+        android:text="xxx"
+        android:textColor="#000000"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4"
+        android:layout_below="@+id/textView4"
+        android:layout_marginTop="2dp"
+        android:text="Estas son tus pólizas contratadas"
+        android:textColor="#7D7D7D"
+        android:textSize="14sp" />
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/textView25"
+        android:background="#CDCDCD"/>
+
+</RelativeLayout>
