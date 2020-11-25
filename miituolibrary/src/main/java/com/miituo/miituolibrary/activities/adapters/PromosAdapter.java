@@ -3,6 +3,7 @@ package com.miituo.miituolibrary.activities.adapters;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,13 @@ public class PromosAdapter extends PagerAdapter
         this.c=c;
         this.codigo=codigo;
         this.kms = kms;
+        Log.e("tag_miituo", ""+codigo);
+    }
+
+    public void updateBanners(int codigo, String cupon) {
+        this.kms=codigo;
+        this.codigo=cupon;
+        this.notifyDataSetChanged();
     }
 
     @Override
@@ -42,7 +50,9 @@ public class PromosAdapter extends PagerAdapter
 
         try {
             container.addView(view);
+            Log.e("tag_miituo", "view");
             if(position==0){
+                Log.e("tag_miituo", "en el 0");
                 LinearLayout ll=(LinearLayout)view.findViewById(R.id.cntCodigo);
                 TextView lbCodigo=(TextView)view.findViewById(R.id.lbCodigo);
                 TextView tvKil= (TextView)view.findViewById(R.id.tvKms);
@@ -63,6 +73,7 @@ public class PromosAdapter extends PagerAdapter
                 });
             }
         }catch(Exception e){
+            Log.e("tag_miituo", "en el error");
             e.printStackTrace();
         }
         return view;
@@ -82,5 +93,10 @@ public class PromosAdapter extends PagerAdapter
     public void destroyItem(ViewGroup container, int position, Object object) {
         View view = (View) object;
         container.removeView(view);
+    }
+
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
     }
 }

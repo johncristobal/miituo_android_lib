@@ -13,16 +13,6 @@
         android:layout_height="160dp"
         android:scaleType="fitEnd" />
 
-    <ImageView
-        android:id="@+id/imageViewClose"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:srcCompat="@drawable/closex" />
-
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
@@ -81,16 +71,17 @@
         android:layout_alignParentBottom="true"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/back_sin_polizas"/>
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hola,"
-        android:textColor="#7D7D7D"
-        android:textSize="16sp"
+        android:layout_below="@+id/imageView2"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/imageView2"/>
+        android:text="Hola"
+        android:textColor="#7D7D7D"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/textViewNombre"
@@ -122,5 +113,16 @@
         android:layout_marginTop="5dp"
         android:layout_below="@id/textView25"
         android:background="#CDCDCD"/>
+
+
+    <ImageView
+        android:id="@+id/imageViewClose"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:srcCompat="@drawable/closex" />
 
 </RelativeLayout>

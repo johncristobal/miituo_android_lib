@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -48,6 +49,12 @@ public class VehicleModelAdapter extends BaseAdapter {
         //tipo = t;
         this.time = tie;
         pathPhotos = new ApiClient(this.mContext).pathPhotos;
+    }
+
+    public void updateReceiptsList(List<InfoClient> newlist) {
+        mInfoClientList.clear();
+        mInfoClientList.addAll(newlist);
+        this.notifyDataSetChanged();
     }
 
     @Override
@@ -302,6 +309,7 @@ public class VehicleModelAdapter extends BaseAdapter {
         }
         catch (Exception ex)
         {
+            Log.e("tag_miituo", "en el error de model adapter");
             ex.printStackTrace();
         }
         return v;
@@ -316,7 +324,7 @@ public class VehicleModelAdapter extends BaseAdapter {
                 .listener(new RequestListener<Bitmap>() {
                               @Override
                               public boolean onLoadFailed(@Nullable GlideException e, Object o, Target<Bitmap> target, boolean b) {
-                                  iv.setImageResource(R.drawable.foto);
+                                  iv.setImageResource(R.drawable.vista_auto_2);
                                   return false;
                               }
 
