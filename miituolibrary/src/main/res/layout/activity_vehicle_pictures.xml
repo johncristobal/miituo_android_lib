@@ -21,7 +21,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:padding="5dp"
-            android:src="@drawable/ic_menu_camera" />
+            android:src="@drawable/camara" />
 
         <TextView
             android:id="@+id/leyenda"
@@ -30,22 +30,25 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
+            android:visibility="gone"
             android:layout_toEndOf="@+id/imageView3"
-            android:text="Agreguemos algunas fotos"
+            android:text=""
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/textView36"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imageView3"
+            android:gravity="start|center"
+            android:layout_alignBottom="@+id/imageView3"
+            android:layout_alignParentTop="@+id/imageView3"
             android:layout_alignParentEnd="true"
-            android:layout_below="@+id/leyenda"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_toEndOf="@+id/imageView3"
-            android:text="Vamos a tomar cuatro fotos para registrar tu auto asegurado."
-            android:textSize="12sp" />
+            android:text="Vamos a tomar cuatro fotografías para registrar tu auto asegurado."
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
@@ -71,8 +74,8 @@
             android:layout_row="0"
             android:adjustViewBounds="true"
             android:contentDescription="Frontal"
-            android:src="@drawable/frontal"
-            app:srcCompat="@drawable/frontal" />
+            android:src="@drawable/vista_auto_2"
+            app:srcCompat="@drawable/vista_auto_2" />
 
         <ImageView
             android:id="@+id/Img2"
@@ -83,8 +86,8 @@
             android:layout_row="0"
             android:adjustViewBounds="true"
             android:contentDescription="Lateral Izquierda"
-            android:src="@drawable/laterald"
-            app:srcCompat="@drawable/laterald" />
+            android:src="@drawable/vista_auto_1"
+            app:srcCompat="@drawable/vista_auto_1" />
 
         <ImageView
             android:id="@+id/Img3"
@@ -95,8 +98,8 @@
             android:layout_row="1"
             android:adjustViewBounds="true"
             android:contentDescription="Trasera"
-            android:src="@drawable/partetrasera"
-            app:srcCompat="@drawable/partetrasera" />
+            android:src="@drawable/vista_auto_4"
+            app:srcCompat="@drawable/vista_auto_4" />
 
         <ImageView
             android:id="@+id/Img4"
@@ -107,18 +110,20 @@
             android:layout_row="1"
             android:adjustViewBounds="true"
             android:contentDescription="Lateral Derecho"
-            android:src="@drawable/laterali"
-            app:srcCompat="@drawable/laterali" />
+            android:src="@drawable/vista_auto_3"
+            app:srcCompat="@drawable/vista_auto_3" />
     </GridLayout>
 
     <Button
         android:id="@+id/btn1"
         android:layout_width="165dp"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:background="@drawable/button"
         android:onClick="subirFotos"
+        android:textAllCaps="false"
         android:text="Continuar"
+        android:textSize="18sp"
         android:textColor="@android:color/white"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />

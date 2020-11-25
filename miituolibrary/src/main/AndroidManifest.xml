@@ -12,14 +12,22 @@
         android:required="true" />
 
     <application>
-        <activity android:name=".activities.WebActivity"></activity>
-        <activity android:name=".activities.PDFViewer" />
-        <activity android:name=".activities.InfoCancelActivity" />
-        <activity android:name=".activities.DetallesActivity" />
-        <activity android:name=".activities.LastOdometerActivity" />
-        <activity android:name=".activities.ConfirmActivity" />
-        <activity android:name=".activities.VehicleOdometer" />
-        <activity android:name=".activities.PrincipalActivity" />
+        <activity android:name=".activities.WebActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activities.PDFViewer"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activities.InfoCancelActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activities.DetallesActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activities.LastOdometerActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activities.ConfirmActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activities.VehicleOdometer"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activities.PrincipalActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.VehiclePictures" />
 
         <provider

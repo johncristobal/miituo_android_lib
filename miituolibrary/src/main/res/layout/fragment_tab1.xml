@@ -4,7 +4,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
-android:background="#e9e9e9"
+android:background="#fff"
 tools:context=".activities.adapters.TabFragment1"
 android:layout_height="match_parent">
 <ScrollView
@@ -30,7 +30,7 @@ android:layout_height="match_parent">
                 android:paddingStart="20dp"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/border_detail"
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/lbDriver"
@@ -60,7 +60,7 @@ android:layout_height="match_parent">
                 android:paddingStart="20dp"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/border_detail"
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/lbContractor"
@@ -91,7 +91,7 @@ android:layout_height="match_parent">
             android:paddingTop="9dp"
             android:paddingBottom="9dp"
             android:layout_marginTop="10dp"
-            android:background="#FFFFFF"
+            android:background="@drawable/border_detail"
             android:orientation="vertical">
             <TextView
                 android:id="@+id/lbAuto"
@@ -121,7 +121,7 @@ android:layout_height="match_parent">
                 android:paddingStart="20dp"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/border_detail"
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/lbPlacas"
@@ -145,7 +145,7 @@ android:layout_height="match_parent">
                 android:paddingStart="20dp"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/border_detail"
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/lbModelo"
@@ -171,7 +171,7 @@ android:layout_height="match_parent">
             android:paddingTop="9dp"
             android:paddingBottom="9dp"
             android:layout_marginTop="10dp"
-            android:background="#FFFFFF">
+            android:background="@drawable/border_detail">
             <TextView
                 android:id="@+id/lbLastReport"
                 android:layout_width="match_parent"
@@ -207,13 +207,13 @@ android:layout_height="match_parent">
                 android:layout_marginEnd="5dp"
                 android:paddingStart="15dp"
                 android:gravity="center_vertical"
-                android:background="#FFFFFF"
+                android:background="@drawable/border_detail"
                 android:orientation="horizontal">
                 <ImageView
                     android:layout_width="38dp"
                     android:layout_height="38dp"
                     android:layout_marginEnd="5dp"
-                    app:srcCompat="@drawable/cambiar_pago"/>
+                    app:srcCompat="@drawable/pay"/>
                 <TextView
                     android:id="@+id/lbCambioPago"
                     android:layout_width="match_parent"
@@ -230,13 +230,13 @@ android:layout_height="match_parent">
                 android:layout_marginStart="5dp"
                 android:paddingStart="15dp"
                 android:gravity="center_vertical"
-                android:background="#FFFFFF"
+                android:background="@drawable/border_detail"
                 android:orientation="horizontal">
                 <ImageView
                     android:layout_width="38dp"
                     android:layout_height="38dp"
                     android:layout_marginEnd="5dp"
-                    app:srcCompat="@drawable/edo_cta"/>
+                    app:srcCompat="@drawable/estado"/>
                 <TextView
                     android:id="@+id/lbEdoCta"
                     android:layout_width="match_parent"

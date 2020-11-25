@@ -83,13 +83,14 @@ tools:context=".activities.ConfirmActivity">
 <Button
     android:id="@+id/button5"
     android:layout_width="165dp"
-    android:layout_height="30dp"
+    android:layout_height="wrap_content"
     android:layout_below="@+id/relativeLayout4"
     android:layout_centerHorizontal="true"
     android:layout_marginTop="10dp"
     android:background="@drawable/button"
-    android:elevation="17dp"
     android:onClick="validar"
+    android:textAllCaps="false"
+    android:textSize="18sp"
     android:text="Aceptar"
     android:textColor="@android:color/white" />
 

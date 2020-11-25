@@ -13,10 +13,8 @@
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginTop="30dp"
         android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
         android:src="@drawable/blumiituo"
         />
 
@@ -25,10 +23,8 @@
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginTop="7dp"
-        android:layout_marginLeft="7dp"
         android:layout_marginStart="7dp"
         android:layout_toEndOf="@+id/StateImage"
-        android:layout_toRightOf="@+id/StateImage"
         android:src="@drawable/foto"
         />
 
@@ -37,11 +33,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/profile_image"
-        android:layout_toRightOf="@+id/profile_image"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
         android:orientation="vertical"
         android:layout_marginStart="5dp">
 
@@ -51,16 +44,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:textStyle="bold"
-            android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
+            android:layout_marginStart="3dp"
             android:layout_below="@+id/Vehicle">
             <ImageView
                 android:id="@+id/btnSiniestro"
@@ -68,26 +59,25 @@
                 android:layout_height="45dp"
                 android:padding="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="5dp"
-                android:src="@drawable/llamar"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/redphone"
                 />
             <LinearLayout
                 android:orientation="vertical"
                 android:id="@+id/btnInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/btnSiniestro"
-                android:layout_marginRight="10dp"
+                android:layout_toStartOf="@+id/btnSiniestro"
+                android:layout_marginEnd="10dp"
                 android:paddingTop="5dp"
-                android:paddingLeft="5dp">
+                android:paddingStart="5dp">
                 <TextView
                     android:id="@+id/tvInfo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
+                    android:textSize="14sp"
                     android:text="Info"/>
                 <TextView
                     android:id="@+id/mensajelimite"
@@ -95,7 +85,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
                     android:text="TextView"
-                    android:textSize="11sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
             <LinearLayout
                 android:visibility="gone"
@@ -103,27 +93,25 @@
                 android:id="@+id/btnRenovacion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
                 android:paddingTop="5dp"
                 android:layout_below="@+id/btnInfo"
-                android:paddingLeft="5dp">
+                android:paddingStart="5dp">
                 <TextView
                     android:id="@+id/lbRenovacion1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textColor="#ff0000"
                     android:textSize="12sp"
-                    android:textStyle="bold"
                     android:text="Tu renovación de póliza está próxima."/>
                 <TextView
                     android:id="@+id/lbRenovacion2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#ff0000"
-                    android:layout_toLeftOf="@+id/btnSiniestro"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:paddingBottom="5dp"
-                    android:textSize="11sp"
+                    android:textSize="12sp"
                     android:text="Ver información"/>
             </LinearLayout>
         </RelativeLayout>

@@ -29,7 +29,9 @@ import com.miituo.miituolibrary.R;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class VehiclePictures extends AppCompatActivity {
 
@@ -192,21 +194,27 @@ public class VehiclePictures extends AppCompatActivity {
     private File createImageFile(String username, int tag) throws IOException {
         // Create an image file name
         try {
-            Calendar calendar = Calendar.getInstance();
-            long startTime = calendar.getTimeInMillis();
 
-            File image;
-            //image = new File(getFilesDir(), "pictures" + File.separator + username + startTime + polizaFolio + ".png");
-            image = new File(getFilesDir(), "pictures" + File.separator + username + startTime + ".png");
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            String imageFileName = "PNG_" + timeStamp + "_";
+            File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            //File storageDir = getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+
+            File image = File.createTempFile(
+                    imageFileName,  // prefix
+                    ".jpeg",         // suffix
+                    storageDir      // directory
+            );
+
+            //File image = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES)+File.separator+"odometro_"+polizaFolio+".png");
 
             // Save a file: path for use with ACTION_VIEW intents
             currentPhotoPath = image.getAbsolutePath();
 
-//            SharedPreferences preferences = getSharedPreferences("miituolibrary", Context.MODE_PRIVATE);
+//            SharedPreferences preferences = getSharedPreferences("miituo", Context.MODE_PRIVATE);
 //            SharedPreferences.Editor editor = preferences.edit();
-//            editor.putString("nombrefoto" + username + polizaFolio, mCurrentPhotoPath);
+//            editor.putString("nombrefotoodometro", mCurrentPhotoPath);
 //            editor.apply();
-
             return image;
 
         }catch(Exception e){

@@ -59,24 +59,24 @@ public class DetallesActivity extends AppCompatActivity {
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("").setIcon(R.drawable.general));
+        tabLayout.addTab(tabLayout.newTab().setText("").setIcon(R.drawable.docs));
         //tabLayout.addTab(tabLayout.newTab().setText("").setIcon(R.drawable.historial));
-        tabLayout.addTab(tabLayout.newTab().setText("").setIcon(R.drawable.odo));
+        tabLayout.addTab(tabLayout.newTab().setText("").setIcon(R.drawable.timer));
         //tabLayout.addTab(tabLayout.newTab().setText("").setIcon(R.drawable.pago));
-        tabLayout.addTab(tabLayout.newTab().setText("").setIcon(R.drawable.sini));
+        tabLayout.addTab(tabLayout.newTab().setText("").setIcon(R.drawable.phoneblack));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        tabLayout.setSelectedTabIndicatorColor(Color.rgb(34,201,252));
+        tabLayout.setSelectedTabIndicatorColor(Color.rgb(55,55,55));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
                 //change icon
                 if(tab.getPosition()==0){
-                    tab.setIcon(R.drawable.general);
+                    tab.setIcon(R.drawable.docs);
                 }else if(tab.getPosition()==1){
-                    tab.setIcon(R.drawable.odoaz);
+                    tab.setIcon(R.drawable.timer);
                 }else if(tab.getPosition()==2){
-                    tab.setIcon(R.drawable.sinia);
+                    tab.setIcon(R.drawable.phoneblack);
                 }
             }
 
@@ -84,11 +84,11 @@ public class DetallesActivity extends AppCompatActivity {
             public void onTabUnselected(TabLayout.Tab tab) {
                 //change icon
                 if(tab.getPosition()==0){
-                    tab.setIcon(R.drawable.generalg);
+                    tab.setIcon(R.drawable.docs);
                 }else if(tab.getPosition()==1){
-                    tab.setIcon(R.drawable.odo);
+                    tab.setIcon(R.drawable.timer);
                 }else if(tab.getPosition()==2){
-                    tab.setIcon(R.drawable.sini);
+                    tab.setIcon(R.drawable.phoneblack);
                 }
             }
 
