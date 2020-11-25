@@ -210,8 +210,8 @@ android:layout_height="match_parent">
                 android:background="@drawable/border_detail"
                 android:orientation="horizontal">
                 <ImageView
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24"
                     android:layout_marginEnd="5dp"
                     app:srcCompat="@drawable/pay"/>
                 <TextView
@@ -233,8 +233,8 @@ android:layout_height="match_parent">
                 android:background="@drawable/border_detail"
                 android:orientation="horizontal">
                 <ImageView
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginEnd="5dp"
                     app:srcCompat="@drawable/estado"/>
                 <TextView

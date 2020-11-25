@@ -9,15 +9,14 @@ android:layout_height="match_parent"
 tools:context=".activities.DetallesActivity"
 android:background="@android:color/white">
 
-<ImageView
+<View
     android:id="@+id/imageView"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:background="@color/beige_miituo"
+    android:background="#fff"
     android:padding="1dp"
     android:scaleType="fitEnd"
     android:layout_alignParentTop="true"
-    android:src="@android:color/white"
     android:layout_alignParentStart="true" />
 
 <de.hdodenhof.circleimageview.CircleImageView

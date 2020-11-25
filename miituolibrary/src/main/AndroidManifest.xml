@@ -28,7 +28,8 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".activities.PrincipalActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.VehiclePictures" />
+        <activity android:name=".activities.VehiclePictures"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"
