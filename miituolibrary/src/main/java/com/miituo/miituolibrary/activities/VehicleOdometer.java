@@ -9,11 +9,13 @@ import androidx.core.content.FileProvider;
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Criteria;
@@ -46,6 +48,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -60,8 +63,10 @@ public class VehicleOdometer extends AppCompatActivity {
     final String ApiSendReportCancelation ="ReportOdometer/PreviewSaveReport/";
     private ApiClient api;
     private static final int MY_CAMERA_REQUEST_CODE = 100;
+    private static final int PERMISSION_CODE = 1000;
     private Button btn6;
     public boolean flagodo = false;
+    Uri image_uri;
 
     public File photoFile = null;
     final int ODOMETER=5,CANCEL=9;
@@ -122,19 +127,35 @@ public class VehicleOdometer extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                        requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_REQUEST_CODE);
+                    if (
+                            checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+                            || checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED
+                            || checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED
+                    ) {
+                        requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION_CODE);
                     } else {
-                        tomarFotografia();
+                        openCamera();//tomarFotografia();
                     }
                 }else{
-                    tomarFotografia();
+                    openCamera();//tomarFotografia();
                 }
             }
         });
     }
 
+    public void openCamera(){
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.TITLE, "New Picture");
+        values.put(MediaStore.Images.Media.DESCRIPTION, "From the Camera");
+        image_uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+        //Camera intent
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
+        startActivityForResult(cameraIntent, ODOMETER);
+    }
+
     public void tomarFotografia(){
+
 
         if (Build.VERSION.SDK_INT < 23) {
             Intent takepic = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -190,10 +211,10 @@ public class VehicleOdometer extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode == MY_CAMERA_REQUEST_CODE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                //Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show();
-                tomarFotografia();
+        if (requestCode == PERMISSION_CODE) {
+
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                openCamera();//tomarFotografia();
             } else {
                 Toast.makeText(this, "No se pueden tomar fotos. Acceso denegado.", Toast.LENGTH_LONG).show();
             }
@@ -202,7 +223,7 @@ public class VehicleOdometer extends AppCompatActivity {
 
     public void subirFoto(View v){
         if (btn6.getText().toString().contains("omar")){
-            tomarFotografia();
+            openCamera();//tomarFotografia();
         }else {
             if (flagodo) {
                 sendodo = new sendOdometro();
@@ -220,11 +241,11 @@ public class VehicleOdometer extends AppCompatActivity {
             super.onActivityResult(requestCode, resultCode, data);
             if(resultCode== Activity.RESULT_OK)
             {
-                String filePath = mCurrentPhotoPath;
+                //String filePath = mCurrentPhotoPath;
                 flagodo = true;
                 //Img5.setImageBitmap(bmp);
                 Glide.with(VehicleOdometer.this)
-                        .load(filePath)
+                        .load(image_uri)
                         .apply(new RequestOptions().override(150, 200).centerCrop())
                         .into(Img5);
 //                Bundle extras = data.getExtras();
@@ -422,6 +443,21 @@ public class VehicleOdometer extends AppCompatActivity {
             }
         }
 
+        private String getFilePath(Uri uri) {
+            String[] projection = {MediaStore.Images.Media.DATA};
+
+            Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+            if (cursor != null) {
+                cursor.moveToFirst();
+
+                int columnIndex = cursor.getColumnIndex(projection[0]);
+                String picturePath = cursor.getString(columnIndex); // returns null
+                cursor.close();
+                return picturePath;
+            }
+            return null;
+        }
+
         @Override
         protected Void doInBackground(String... params) {
             try {
@@ -435,9 +471,22 @@ public class VehicleOdometer extends AppCompatActivity {
                 } else {
                     //Subimos foto de odometro.....
                     //mCurrentPhotoPath = app_preferences.getString("nombrefotoodometro", "null");
+                    InputStream input = getContentResolver().openInputStream(image_uri);
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     options.inSampleSize = 4;
-                    bmp = BitmapFactory.decodeFile(mCurrentPhotoPath, options);
+                    bmp = BitmapFactory.decodeStream(input,null, options);
+                    input.close();
+                    //bmp = MediaStore.Images.Media.getBitmap(getContentResolver(), image_uri);
+                    File fdelete = new File(getFilePath(image_uri));
+
+                    if (fdelete.exists()) {
+                        if (fdelete.delete()) {
+                            System.out.println("file Deleted :" );
+                        } else {
+                            System.out.println("file not Deleted :");
+                        }
+                    }
+
                     String lat = null, lon = null, cp = null;
                     lat="0";
                     lon="0";
@@ -445,7 +494,7 @@ public class VehicleOdometer extends AppCompatActivity {
                     api.UploadPhoto((tipoodometro.equals("cancela") ? 6 : 5), bmp, UrlApi, tok, odo, lat, lon, cp);
                 }
                 IinfoClient.InfoClientObject.getPolicies().setRegOdometer(Integer.parseInt("1000"));
-            } catch (IOException ex) {
+            } catch (Exception ex) {
                 ErrorCode = ex.getMessage();
                 this.cancel(true);
             }

@@ -2,6 +2,7 @@ package com.miituo.miituolibrary.activities;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,26 +13,41 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.miituo.miituolibrary.R;
+import com.miituo.miituolibrary.activities.adapters.PromosAdapter;
 import com.miituo.miituolibrary.activities.adapters.VehicleModelAdapter;
 import com.miituo.miituolibrary.activities.data.IinfoClient;
 import com.miituo.miituolibrary.activities.data.InfoClient;
+import com.miituo.miituolibrary.activities.threats.GetCuponAsync;
 import com.miituo.miituolibrary.activities.threats.GetPoliciesData;
 import com.miituo.miituolibrary.activities.utils.CallBack;
 import com.miituo.miituolibrary.activities.utils.SimpleCallBack;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class PrincipalActivity extends AppCompatActivity implements CallBack {
 
     String telefono;
     SharedPreferences app_preferences;
     public int idpoliza;
+    public Timer timer;
+    private ViewPager viewPager;
+    private PromosAdapter adapter;
+    private LinearLayout dotsLayout;
+    private TextView[] dots;
 
     private ListView vList;
     private VehicleModelAdapter vadapter;
@@ -62,7 +78,134 @@ public class PrincipalActivity extends AppCompatActivity implements CallBack {
     @Override
     protected void onResume() {
         super.onResume();
+        pageSwitcher();
+        obtenerCupon();
         //getPolizasData(telefono);
+    }
+
+    public void pageSwitcher() {
+        timer = new Timer(); // At this line a new Thread will be created
+        timer.schedule(new RemindTask(), 9000, 9000);
+    }
+    // this is an inner class...
+    class RemindTask extends TimerTask {
+        @Override
+        public void run() {
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    try {
+                        if (viewPager.getCurrentItem() == 0) {
+                            viewPager.setCurrentItem(1, true);
+                        } else {
+                            viewPager.setCurrentItem(0, true);
+                        }
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+        }
+    }
+
+    public void obtenerCupon(){
+        String url = "Cupon/getReferredClientCoupon/"+app_preferences.getString("Celphone", "0");
+        GetCuponAsync gp = new GetCuponAsync(PrincipalActivity.this, url, new SimpleCallBack(){
+
+            @Override
+            public void run(boolean status, String res) {
+                if (status) {
+                    try {
+                        //Crear los elementos json para obtener los datos del servicio...
+                        JSONArray array = new JSONArray(res);
+                        JSONObject o = array.getJSONObject(0);
+                        JSONObject cupones = o.getJSONObject("Cupones");
+                        Double kms = cupones.getDouble("Kms");
+                        InicializarBanners(kms);
+                        //Toast.makeText(PrincipalActivity.this, "kilometraje:"+ kms, Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        InicializarBanners(100.0);
+                    }
+                }else{
+                    InicializarBanners(100.0);
+                }
+            }
+        });
+        gp.execute();
+    }
+    public void InicializarBanners(Double kms){
+        viewPager = (ViewPager) findViewById(R.id.view_pager);
+        String cupon = "";
+        if (result != null && result.size() > 0) {
+            cupon = result.get(0).getClient().getCupon();
+        }
+        adapter = new PromosAdapter(this, cupon, kms.intValue());
+        viewPager.setAdapter(adapter);
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageSelected(int position) {
+                TextView tv = (TextView) findViewById(R.id.terms);
+                if (position == 1) {
+                    tv.setText("*Consulta términos y condiciones.");
+                } else {
+                    tv.setText("*Aplica un cupón al mes por póliza solo si \n" +
+                            "reportaste tu odómetro y pagaste el mes anterior.");
+                }
+                addBottomDots(position);
+                timer.cancel();
+                pageSwitcher();
+            }
+
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+            }
+
+
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+            }
+        });
+        dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
+        dotsLayout.removeAllViews();
+        TextView tv = (TextView) findViewById(R.id.terms);
+        tv.setText("Aplica un cupón al mes por póliza solo si \n" +
+                "reportaste tu odómetro y pagaste el mes anterior.");
+        addBottomDots(0);
+        //pageSwitcher();
+    }
+
+    private void addBottomDots(int currentPage) {
+        dots = new TextView[2];
+        int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
+        int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
+
+        dotsLayout.removeAllViews();
+        for (int i = 0; i < dots.length; i++) {
+            dots[i] = new TextView(this);
+            dots[i].setText("•");//Html.fromHtml("&#8226;"));
+            dots[i].setTextSize(20);
+            dots[i].setTextColor(colorsInactive[currentPage]);
+            dotsLayout.addView(dots[i]);
+        }
+
+        if (dots.length > 0)
+            dots[currentPage].setTextColor(colorsActive[currentPage]);
+    }
+
+    public void launchAlert(String res){
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(PrincipalActivity.this);
+        builder.setTitle("Atención");
+        builder.setMessage(res);
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                PrincipalActivity.this.finish();
+            }
+        });
+        android.app.AlertDialog alerta = builder.create();
+        alerta.show();
     }
 
     public void getPolizasData(final String telefono){
@@ -72,7 +215,7 @@ public class PrincipalActivity extends AppCompatActivity implements CallBack {
             public void run(boolean status, String res) {
                 if (!status){
                     String data[] = res.split("@");
-                    //launchAlert(data[1]);
+                    launchAlert(data[1]);
                 }else{
                     //tenemos polizas, recuperamos list y mandamos a sms...
                     SharedPreferences.Editor editor = app_preferences.edit();
@@ -89,7 +232,7 @@ public class PrincipalActivity extends AppCompatActivity implements CallBack {
 
                     result = InfoList;
                     if (result.size() < 1) {
-                        //showViews(true);
+                        launchAlert("No cuenta con pólizas activas.");
                     }else{
                         //showViews(false);
                         String na = result.get(0).getClient().getName();
@@ -149,7 +292,6 @@ public class PrincipalActivity extends AppCompatActivity implements CallBack {
             //set token...
             //IinfoClient.getInfoClientObject().getClient().setToken(token);
             Intent i;
-//            item.getPolicies().setReportState(13);
             if (!item.getPolicies().isHasVehiclePictures() && !item.getPolicies().isHasOdometerPicture()) {
                 i = new Intent(PrincipalActivity.this, VehiclePictures.class);
                 app_preferences.edit().putString("odometro", "first").apply();
@@ -236,4 +378,5 @@ public class PrincipalActivity extends AppCompatActivity implements CallBack {
         alerta = builder.create();
         alerta.show();
     }
+
 }

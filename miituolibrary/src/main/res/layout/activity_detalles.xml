@@ -60,7 +60,7 @@ android:background="@android:color/white">
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
-    android:background="?attr/colorPrimary"
+    android:background="@color/colorLightGray"
     android:minHeight="?attr/actionBarSize"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 

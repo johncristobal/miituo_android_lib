@@ -55,7 +55,7 @@
         android:layout_below="@+id/img5"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
-        android:text="Fotografía del odómetro"
+        android:text="Toma una fotografía de tu odómetro"
         android:textSize="18sp" />
 
     <TextView
@@ -68,7 +68,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="18dp"
         android:gravity="center"
-        android:text="Toma la fotografía de tu odómetro, asegurate de que la iluminación sea la adecuada para que la foto sea clara y los números visibles."
+        android:text="Asegurate de que la iluminación sea la adecuada para que la foto sea clara y los números visibles."
         android:textSize="16sp" />
 
 </RelativeLayout>
